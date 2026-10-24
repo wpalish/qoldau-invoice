@@ -83,11 +83,15 @@ const definition = {
     }
     for (const line of rows(state, "lines")) {
       const old = changed(before, "lines", line.id),
-        parent = byId(state, "invoices", line.invoice);
-      if (parent.status !== "draft")
+        parent = byId(state, "invoices", line.invoice),
+        previousParent = old && byId(before, "invoices", old.invoice);
+      if (
+        parent.status !== "draft" ||
+        (previousParent && previousParent.status !== "draft")
+      )
         required(
           old && JSON.stringify(old) === JSON.stringify(line),
-          "Позиции редактируются только в черновике счёта.",
+          "Позиции можно менять и переносить только между черновиками счетов.",
         );
     }
     for (const payment of rows(state, "payments")) {

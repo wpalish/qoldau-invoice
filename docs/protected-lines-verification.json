@@ -1,0 +1,139 @@
+{
+  "date": "2026-10-24",
+  "product": "qoldau-invoice",
+  "defect": "Changing a line parent to a draft only checked the destination status, bypassing the protected source document.",
+  "original_reproduction": [
+    {
+      "slug": "qoldau-invoice",
+      "status": "issued",
+      "old_code_allowed_transfer": true,
+      "computed_before": [
+        {
+          "title": "SYNTHETIC-A · KZT",
+          "lines": [
+            "Сумма: 200.00",
+            "Отмечено оплат: 0.00",
+            "Остаток: 200.00"
+          ]
+        },
+        {
+          "title": "SYNTHETIC-B · KZT",
+          "lines": [
+            "Сумма: 0.00",
+            "Отмечено оплат: 0.00",
+            "Остаток: 0.00"
+          ]
+        }
+      ],
+      "computed_after": [
+        {
+          "title": "SYNTHETIC-A · KZT",
+          "lines": [
+            "Сумма: 100.00",
+            "Отмечено оплат: 0.00",
+            "Остаток: 100.00"
+          ]
+        },
+        {
+          "title": "SYNTHETIC-B · KZT",
+          "lines": [
+            "Сумма: 100.00",
+            "Отмечено оплат: 0.00",
+            "Остаток: 100.00"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "qoldau-invoice",
+      "status": "cancelled",
+      "old_code_allowed_transfer": true,
+      "computed_before": [
+        {
+          "title": "SYNTHETIC-A · KZT",
+          "lines": [
+            "Сумма: 200.00",
+            "Отмечено оплат: 0.00",
+            "Остаток: 200.00"
+          ]
+        },
+        {
+          "title": "SYNTHETIC-B · KZT",
+          "lines": [
+            "Сумма: 0.00",
+            "Отмечено оплат: 0.00",
+            "Остаток: 0.00"
+          ]
+        }
+      ],
+      "computed_after": [
+        {
+          "title": "SYNTHETIC-A · KZT",
+          "lines": [
+            "Сумма: 100.00",
+            "Отмечено оплат: 0.00",
+            "Остаток: 100.00"
+          ]
+        },
+        {
+          "title": "SYNTHETIC-B · KZT",
+          "lines": [
+            "Сумма: 100.00",
+            "Отмечено оплат: 0.00",
+            "Остаток: 100.00"
+          ]
+        }
+      ]
+    }
+  ],
+  "fix": "Existing line must be unchanged if either current destination or previous source document is non-draft. Permitted explicit return to draft keeps normal editing available.",
+  "tests": {
+    "passed": 5,
+    "failed": 0,
+    "runtime": "v24.19.0",
+    "log": "docs/test-output.txt",
+    "regression": "tests/protected-lines.test.js",
+    "covered": [
+      "protected source cannot transfer unchanged or changed line into draft",
+      "direct edit and archive of protected line rejected",
+      "draft line cannot enter protected destination",
+      "draft-to-draft relocation allowed",
+      "explicit permitted return to draft allows editing",
+      "file database restart preserves protection",
+      "validated restore preserves protected history and rejects relocation",
+      "rejection preserves all saved data, computed totals, revision and successful audit count"
+    ]
+  },
+  "browser": {
+    "fixture": "synthetic only; initial records seeded through authenticated local API",
+    "protected_source": "issued",
+    "attempt": "Change selected source line parent to SYNTHETIC-DRAFT and save",
+    "rejected": true,
+    "reload_preserved_original_parent": true,
+    "slug": "qoldau-invoice",
+    "all_saved_data_unchanged": true,
+    "revision": 7,
+    "audit_events": 7,
+    "computed_before_and_after": [
+      {
+        "title": "SYNTHETIC-PROTECTED · KZT",
+        "lines": [
+          "Сумма: 200.00",
+          "Отмечено оплат: 0.00",
+          "Остаток: 200.00"
+        ]
+      },
+      {
+        "title": "SYNTHETIC-DRAFT · KZT",
+        "lines": [
+          "Сумма: 50.00",
+          "Отмечено оплат: 0.00",
+          "Остаток: 50.00"
+        ]
+      }
+    ],
+    "payload_sha256": "f86caa7734e070ec05f4e4f2e724aee5666deb2ed7beed4e073da70622c00742",
+    "screen": "docs/protected-line-rejected.jpg"
+  },
+  "scope": "Domain validation and its error wording only. No schema/layout/integration/payment change; not a new whole-interface or external security audit."
+}

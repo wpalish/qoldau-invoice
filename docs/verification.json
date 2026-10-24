@@ -4,7 +4,7 @@
   "runtime": "Node 24.19.0",
   "tests": {
     "slug": "qoldau-invoice",
-    "tests": 4,
+    "tests": 5,
     "pass": true,
     "runtime": "v24.19.0"
   },
@@ -36,5 +36,10 @@
     "slug": "qoldau-invoice",
     "query": "TEST-1",
     "result": "visible_label_and_no_results_recovery_passed"
+  },
+  "followup": {
+    "date": "2026-10-24",
+    "change": "Protected source line relocation bypass fixed",
+    "evidence": "docs/protected-lines-verification.json"
   }
 }

@@ -2,33 +2,39 @@ TAP version 13
 # Subtest: Qoldau Invoice: complete original workflow, calculation and rejected invalid transition
 ok 1 - Qoldau Invoice: complete original workflow, calculation and rejected invalid transition
   ---
-  duration_ms: 2.809625
+  duration_ms: 2.887791
   type: 'test'
   ...
 # Subtest: real file restart, optimistic conflict and validated restore into an empty database
 ok 2 - real file restart, optimistic conflict and validated restore into an empty database
   ---
-  duration_ms: 3.267083
+  duration_ms: 6.134334
   type: 'test'
   ...
 # Subtest: HTTP prevents anonymous reads and cross-origin/CSRF writes while authenticated workflow saves
 ok 3 - HTTP prevents anonymous reads and cross-origin/CSRF writes while authenticated workflow saves
   ---
-  duration_ms: 71.749459
+  duration_ms: 80.21875
   type: 'test'
   ...
 # Subtest: two products on one host use isolated session cookies and preserve both logins
 ok 4 - two products on one host use isolated session cookies and preserve both logins
   ---
-  duration_ms: 87.487167
+  duration_ms: 89.381834
   type: 'test'
   ...
-1..4
-# tests 4
+# Subtest: Qoldau Invoice: protected source lines cannot escape into another draft
+ok 5 - Qoldau Invoice: protected source lines cannot escape into another draft
+  ---
+  duration_ms: 22.458375
+  type: 'test'
+  ...
+1..5
+# tests 5
 # suites 0
-# pass 4
+# pass 5
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 209.030958
+# duration_ms 235.724833
