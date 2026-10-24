@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-24",
+  "version": "0.1.0",
+  "runtime": "Node 24.19.0",
+  "tests": {
+    "slug": "qoldau-invoice",
+    "tests": 4,
+    "pass": true,
+    "runtime": "v24.19.0"
+  },
+  "browser": {
+    "slug": "qoldau-invoice",
+    "status": "ui_workflow_passed",
+    "saved_operations": 5,
+    "labels": {
+      "c": "Вымышленный клиент",
+      "i": "TEST-1"
+    },
+    "reference": 62
+  },
+  "screens": [
+    "../.impeccable/review/desktop.jpg",
+    "../.impeccable/review/mobile.jpg",
+    "../.impeccable/review/user-1280.jpg"
+  ],
+  "limitations": "Не налоговая система и не приём платежей; отметка оплаты не проверяет банк.",
+  "deployment": "source repository; server checked locally only",
+  "security_audit": false,
+  "customer_validation": false,
+  "review": {
+    "disposition": "ship",
+    "scope": "Reviewer scored the listed fixes resolved; not a new whole-surface/security audit",
+    "record": "verdict-pass.md"
+  },
+  "correctionBrowser": {
+    "slug": "qoldau-invoice",
+    "query": "TEST-1",
+    "result": "visible_label_and_no_results_recovery_passed"
+  }
+}

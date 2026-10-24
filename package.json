@@ -1,0 +1,14 @@
+{
+  "name": "qoldau-invoice",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Счета, строки и ручная сверка частичных оплат с проверкой остатка. Без приёма платежей и налоговых документов.",
+  "engines": {
+    "node": ">=24.15 <25"
+  },
+  "scripts": {
+    "start": "node start.js",
+    "test": "node --test tests/*.test.js"
+  }
+}
